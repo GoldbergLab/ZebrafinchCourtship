@@ -1,0 +1,23 @@
+
+Rail lengths:
+
+Male box:
+	Radial1:	8.6219"  ~ 8 5/8"
+	Radial2: 	8.6219"  ~ 8 5/8"
+	Inner:		7.5575"  ~ 7 9/16"
+	Outer: 		20.118"	 ~ 20 1/8"
+
+Hex:
+	Inner bottom: 	8.594"   ~ 8 19/32"
+	Radial bottom: 	11"  	 
+	Radial top: 	11"
+	Vertical inner: 12"
+	Vertical outer: 12"
+	Vertical mid:	10"
+	Inner top:	4.6" 	 ~ 4 19/32"
+
+Camera mount:
+	Vertical: 	6"
+	Horizontal:	9.14"    ~ 9 1/8"
+		
+

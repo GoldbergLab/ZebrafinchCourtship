@@ -1,0 +1,22 @@
+Male inner wall				3	3	D	D
+Male bottom				3	3	D	D
+Male outer wall				3	3	D	D
+Male outer door				3	3	D	D
+Male outer door stopper			3	3	D	D
+Male radial wall			3	3	D	D modified (side relief slots added)
+Male radial wall2			3	3	D	D modified (side relief slots added)
+Male top				3	3	D	D
+Interaction wall			3	3	D (mod)	D
+Interaction wall barrier male side	4	2	D	D
+Spring holder profile			3	5	D	D
+Spring aligner profile			3	3	D	D
+Inner hex panel female side		3	3	D	D
+Inner hex door				3	3	D	D
+Inner hex door stopper			3	3	D	D
+Hex radial wall				3	3	D	D
+Hex radial wall2			3	4	D	D
+Inner hex panel male side		3	3	D	D
+Gangway					3	3	D	D
+Hex top 						
+Hex bottom						
+Post topper 					4	D

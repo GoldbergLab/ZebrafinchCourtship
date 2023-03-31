@@ -1,0 +1,39 @@
+Parts list:
+
+T-slotted rails: 
+  Male box:
+	6x (2x 8.6" + 7.6" + 20.1")
+  Female antechamber:
+	6x (2x 8.6" + 2x 11" + 2x 12")
+ Total = 54 feet ($250 @ $4.59/ft), 27.5 lbs (0.51 lbs/ft)
+
+Directional mics:
+  2 x 6 = 12 ($1800 @ $150 ea)
+
+Acrylic:
+  Male box:
+	6x (12x18 + 2x 12x9 + 12x8 + 2x 10x18) = ~20 12x24 sheets (~$340), 6x 5 actual sheets = 30
+  Female antechamber:
+	6x (2x 12x11 + 2x 12x9 + 2x 20x22) = ~30 12x24 sheets (~$500)
+
+Flat brackets:
+	12x ($72)
+
+Torsion springs:
+	6x (~$18)
+Hinges:
+	12x (~$72)
+
+Plywood:
+	6x 48"x48"x0.5" = $180
+Turntable: McMaster 18635A45
+	1x ($341)
+
+Female flight cage: 1x $??
+
+Acoustic foam
+
+Mirror: 17"x17" ($52)
+
+Camera
+6mm lens

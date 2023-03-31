@@ -1,0 +1,35 @@
+
+
+Rails:
+	Vertical (x4) -		64.2"	4/4
+	Horizontal (x4) - 	45"	4/4
+	Depth (x8) - 		44"	8/8
+	Door vertical (x2) - 	29"	2/2
+	Door horizontal (x4) - 	22.5"	4/4
+
+piece 1		vertical + door vertical + door horizontal 	(4" left over)
+piece 2		vertical + door vertical + door horizontal 	(4" left over)
+piece 3		vertical + horizontal	 			(10.5" left over)
+piece 4		vertical + horizontal				(10.5" left over)
+piece 5		horizontal + door horizontal + depth		(8.5" left over)
+piece 6 (8 ft)	depth + depth 					(8" left over)
+piece 7	(8 ft)	depth + horizontal				(7" left over)
+
+piece 8		depth + depth + door horizontal			(9.5" left over)
+piece 9	 	depth + depth
+
+
+Panels:
+	Left wall -  		46"x29" (with hinge cutouts, 6" from top/bottom)
+	Right wall -		46"x29" (with hinge cutouts)
+	Bottom - 		47.75"x47.75" (with through-post cutouts and transfer tube hole)
+	Top - 			47.75"x46.375"
+	Back - 			47.75"x29"
+
+	Door panel (x2) - 	23.5"x29"
+	Door lip - 		3"x29"
+
+
+sheet 1 - left + right + back
+sheet 2 - bottom + top
+sheet 3 - door panel + door panel + door lip+

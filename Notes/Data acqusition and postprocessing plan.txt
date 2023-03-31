@@ -1,0 +1,30 @@
+
+
+
+Record together:
+ - 6 male mics
+ - 6 female mics
+ - 6 male perches
+ - 6 female perches
+ - 1 video sync channel
+
+Post-processing
+1. Separate and rename channels into separate folders, one per male box
+Each of the 6 resulting box folder will have
+ - 1 male mic
+ - 1 female mic
+ - 1 male perch
+ - 1 female perch
+ - 1 video sync channel
+
+ - some kind of video tracking output?
+
+2. Run macro within electro-gui to take video tracking Incorporate video tracking output and turn it into a boolean
+ - 1 boolean for each female, true if in box, false otherwise
+
+3. Run macro within electro-gui to take female perch channels and convert them to both markers and a boolean
+ - Debounce perch signal to eliminate spurious hops
+ - Make a marker out of each perch "session"
+ - Add a boolean to every file that has at least one legit perch "session"
+
+4. Run automatic syllable identification - try to improve this with Caleb
