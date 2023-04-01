@@ -91,8 +91,14 @@ for fileNum = 1:nFiles
     isMale = regexpmatch(activeShortNames, 'M');
 
     femaleTagPart = join(activeBoxNums(isFemale), '');
+    if isempty(femaleTagPart)
+        femaleTagPart = {''};
+    end
     femaleTagPart = [femaleTagPart{1}, 'F'];
     maleTagPart = join(activeBoxNums(isMale), '');
+    if isempty(maleTagPart)
+        maleTagPart = {''};
+    end
     maleTagPart = [maleTagPart{1}, 'M'];
 
     perchMatch = false;
