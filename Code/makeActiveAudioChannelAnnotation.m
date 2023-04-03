@@ -40,7 +40,7 @@ end
 
 % Load audio data from wav file, along with the sampling rate Fs
 [audioData, Fs] = audioread(inputAudioFile);
-audioChannelAnnotation = findActiveAudioChannelAnnotation(audioData);
+audioChannelAnnotation = findActiveAudioChannel(audioData);
 
 % If requested by the user, write the audio file as a .nc file
 if ~isempty(outputAnnotationFile)
@@ -55,9 +55,12 @@ if ~isempty(outputAnnotationFile)
         'Active audio channel annotation', audioChannelAnnotation)
 end
 
-function audioChannelAnnotation = findActiveAudioChannelAnnotation(audioData)
+function audioChannelAnnotation = findActiveAudioChannel(audioData)
 % audioData is an N x C array, where N is the # of samples in the audio
-% file, and C is the # of channels.
+%   file, and C is the # of channels.
+% audioChannelAnnotation iks a N x 1 array, where each sample is either
+%   NaN, if no channel is clearly active, or a channel number indicating
+%   which channel is active.
 
 % This is where the magic happens!
 
