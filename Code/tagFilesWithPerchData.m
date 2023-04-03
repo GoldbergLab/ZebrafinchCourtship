@@ -37,6 +37,10 @@ digitalConfig = readtable(digitalConfigFilePath);
 lineNumbers = digitalConfig.DigitalChannel;
 shortNames = digitalConfig.ShortName;
 boxNums = arrayfun(@num2str, digitalConfig.BoxNum, 'UniformOutput', false);
+% fileTags = digitalConfig.FileTag;
+% 
+% fileTagPattern = join(fileTags, '|');
+% fileTagPattern = fileTagPattern{1};
 
 % Extension to use to look for perch data
 perchDataExtension = 'nc';
@@ -60,7 +64,7 @@ nFiles = min(length(otherDataFiles), length(perchFiles));
 for fileNum = 1:nFiles
     otherDataFile = otherDataFiles{fileNum};
     % Check if other data file has already been tagged
-    if regexp(otherDataFile, '.*[0-9]+[MF](\-[0-9]+F\+?)?')
+    if regexp(otherDataFile, '.*\_[0-9]+[MF](\-[0-9]+F\+?)?')
         warning('Found a file that was already tagged: %s', otherDataFile);
         continue;
     end
@@ -118,7 +122,17 @@ for fileNum = 1:nFiles
         tag = [tag, '+'];
     end
 
+    % Split data file name into parts
     [otherDataPath, otherDataName, otherDataExt] = fileparts(otherDataFile);
+
+%     % Audio that is already split into separate mono files has a "file tag" 
+%     % that should stay at the end of the filename.
+%     fileTagIndex = regexp(otherDataName, fileTagPattern);
+%     if ~isempty(fileTagIndex)
+%         otherDataName = insert(otherDataName, fileTagIndex, [tag, '_']);
+%     end
+
+    % Assemble new name
     newotherDataFile = fullfile(otherDataPath, [otherDataName, tag, otherDataExt]);
 
     if dryRun
