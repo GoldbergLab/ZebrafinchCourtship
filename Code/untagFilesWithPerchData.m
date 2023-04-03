@@ -44,11 +44,10 @@ for fileNum = 1:nFiles
     % Check if other data file has already been tagged
     if regexp(otherDataFile, '.*\_[0-9]+[MF](\-[0-9]+F\+?)?')
         newotherDataFile = regexprep(otherDataFile, '\_[0-9]+[MF](\-[0-9]+F\+?)?', '');
-    end
-
-    if dryRun
-        fprintf('This would have moved:\n\t%s\nto\n\t%s\n\n', otherDataFile, newotherDataFile);
-    else
-        movefile(otherDataFile, newotherDataFile);
+        if dryRun
+            fprintf('This would have moved:\n\t%s\nto\n\t%s\n\n', otherDataFile, newotherDataFile);
+        else
+            movefile(otherDataFile, newotherDataFile);
+        end
     end
 end
