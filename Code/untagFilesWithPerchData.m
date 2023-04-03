@@ -38,12 +38,16 @@ otherDataFiles = findFilesByRegex(rootDataDirectory, ['.*\.', otherDataExtension
 % Get # of matching files
 nFiles = length(otherDataFiles);
 
+% Note "_F\." is to fix a specific incorrect tag
+tagFindPattern = '(\_[0-9]+[MF](\-[0-9]+F\+?)?)|(_F\.)';
+tagReplacePattern = '(\_[0-9]+[MF](\-[0-9]+F\+?)?)|(_F)';
+
 % Loop over file lists
 for fileNum = 1:nFiles
     otherDataFile = otherDataFiles{fileNum};
     % Check if other data file has already been tagged
-    if regexp(otherDataFile, '.*\_[0-9]+[MF](\-[0-9]+F\+?)?')
-        newotherDataFile = regexprep(otherDataFile, '\_[0-9]+[MF](\-[0-9]+F\+?)?', '');
+    if regexp(otherDataFile, tagFindPattern)
+        newotherDataFile = regexprep(otherDataFile, tagReplacePattern, '');
         if dryRun
             fprintf('This would have moved:\n\t%s\nto\n\t%s\n\n', otherDataFile, newotherDataFile);
         else
