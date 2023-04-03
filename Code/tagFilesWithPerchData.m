@@ -120,8 +120,10 @@ for fileNum = 1:nFiles
         tag = ['_', maleTagPart, '-', femaleTagPart];
     elseif sum(isMale)
         tag = ['_', maleTagPart];
-    else
+    elseif sum(isFemale)
         tag = ['_', femaleTagPart];
+    else
+        tag = '';
     end
 
     if perchMatch
