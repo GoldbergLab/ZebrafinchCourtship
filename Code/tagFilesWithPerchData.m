@@ -10,7 +10,7 @@ function tagFilesWithPerchData(rootPerchDirectory, rootDataDirectory, digitalCon
 %    rootDataDirectory is a char array representing the root directory 
 %       where all the other data is stored
 %    digitalConfigFilePath is the path to a digital configuration file
-%    otherDataExtension is a file extension (not including a period) that
+%    otherDataExtension is a file extension that
 %       specifies what types of data files to look for
 %    dryRun is a boolean flag indicating if the files should actually be
 %       renamed or not.
@@ -20,7 +20,7 @@ function tagFilesWithPerchData(rootPerchDirectory, rootDataDirectory, digitalCon
 %   active. Also adds a "+" if two perches in the same box are both active
 %   in the same file.
 %
-% See also: 
+% See also: untagFilesWithPerchData
 %
 % Version: 1.0
 % Author:  Brian Kardon
@@ -41,6 +41,9 @@ boxNums = arrayfun(@num2str, digitalConfig.BoxNum, 'UniformOutput', false);
 % Extension to use to look for perch data
 perchDataExtension = 'nc';
 
+% Remove period in extension if it exists
+otherDataExtension = regexprep(otherDataExtension, '\.', '');
+
 % Find file lists
 otherDataFiles = findFilesByRegex(rootDataDirectory, ['.*\.', otherDataExtension], false, false);
 perchFiles = findFilesByRegex(rootPerchDirectory, ['.*\.', perchDataExtension], false, false);
@@ -57,7 +60,7 @@ nFiles = min(length(otherDataFiles), length(perchFiles));
 for fileNum = 1:nFiles
     otherDataFile = otherDataFiles{fileNum};
     % Check if other data file has already been tagged
-    if regexp(otherDataFile, '.*[0-9]*[M-F](\-[0-9]*F\+?)')
+    if regexp(otherDataFile, '.*[0-9]+[MF](\-[0-9]+F\+?)?')
         warning('Found a file that was already tagged: %s', otherDataFile);
         continue;
     end
