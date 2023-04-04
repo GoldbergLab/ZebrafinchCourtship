@@ -10,7 +10,7 @@ function tagFilesWithPerchData(rootPerchDirectory, rootDataDirectory, digitalCon
 %    rootDataDirectory is a char array representing the root directory 
 %       where all the other data is stored
 %    digitalConfigFilePath is the path to a digital configuration file
-%    otherDataExtension is a file extension (not including a period) that
+%    otherDataExtension is a file extension that
 %       specifies what types of data files to look for
 %    dryRun is a boolean flag indicating if the files should actually be
 %       renamed or not.
@@ -20,7 +20,7 @@ function tagFilesWithPerchData(rootPerchDirectory, rootDataDirectory, digitalCon
 %   active. Also adds a "+" if two perches in the same box are both active
 %   in the same file.
 %
-% See also: 
+% See also: untagFilesWithPerchData
 %
 % Version: 1.0
 % Author:  Brian Kardon
@@ -37,9 +37,16 @@ digitalConfig = readtable(digitalConfigFilePath);
 lineNumbers = digitalConfig.DigitalChannel;
 shortNames = digitalConfig.ShortName;
 boxNums = arrayfun(@num2str, digitalConfig.BoxNum, 'UniformOutput', false);
+% fileTags = digitalConfig.FileTag;
+% 
+% fileTagPattern = join(fileTags, '|');
+% fileTagPattern = fileTagPattern{1};
 
 % Extension to use to look for perch data
 perchDataExtension = 'nc';
+
+% Remove period in extension if it exists
+otherDataExtension = regexprep(otherDataExtension, '\.', '');
 
 % Find file lists
 otherDataFiles = findFilesByRegex(rootDataDirectory, ['.*\.', otherDataExtension], false, false);
@@ -57,7 +64,7 @@ nFiles = min(length(otherDataFiles), length(perchFiles));
 for fileNum = 1:nFiles
     otherDataFile = otherDataFiles{fileNum};
     % Check if other data file has already been tagged
-    if regexp(otherDataFile, '.*[0-9]*[M-F](\-[0-9]*F\+?)')
+    if regexp(otherDataFile, '.*\_[0-9]+[MF](\-[0-9]+F\+?)?')
         warning('Found a file that was already tagged: %s', otherDataFile);
         continue;
     end
@@ -91,8 +98,14 @@ for fileNum = 1:nFiles
     isMale = regexpmatch(activeShortNames, 'M');
 
     femaleTagPart = join(activeBoxNums(isFemale), '');
+    if isempty(femaleTagPart)
+        femaleTagPart = {''};
+    end
     femaleTagPart = [femaleTagPart{1}, 'F'];
     maleTagPart = join(activeBoxNums(isMale), '');
+    if isempty(maleTagPart)
+        maleTagPart = {''};
+    end
     maleTagPart = [maleTagPart{1}, 'M'];
 
     perchMatch = false;
@@ -107,15 +120,27 @@ for fileNum = 1:nFiles
         tag = ['_', maleTagPart, '-', femaleTagPart];
     elseif sum(isMale)
         tag = ['_', maleTagPart];
-    else
+    elseif sum(isFemale)
         tag = ['_', femaleTagPart];
+    else
+        tag = '';
     end
 
     if perchMatch
         tag = [tag, '+'];
     end
 
+    % Split data file name into parts
     [otherDataPath, otherDataName, otherDataExt] = fileparts(otherDataFile);
+
+%     % Audio that is already split into separate mono files has a "file tag" 
+%     % that should stay at the end of the filename.
+%     fileTagIndex = regexp(otherDataName, fileTagPattern);
+%     if ~isempty(fileTagIndex)
+%         otherDataName = insert(otherDataName, fileTagIndex, [tag, '_']);
+%     end
+
+    % Assemble new name
     newotherDataFile = fullfile(otherDataPath, [otherDataName, tag, otherDataExt]);
 
     if dryRun
